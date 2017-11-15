@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
 import javax.swing.border.*;
-import com.jtattoo.plaf.*;
 import data.Connect;
 import data.ThamSoData;
 import data.Update;
@@ -29,8 +28,6 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -234,7 +231,7 @@ public class PhieuNhapSach extends javax.swing.JFrame {
                                 .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(txtMaSach2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtMaSach3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)

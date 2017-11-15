@@ -206,6 +206,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMaSV">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaSVActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDiaChi">
         </Component>

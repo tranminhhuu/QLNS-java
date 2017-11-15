@@ -25,9 +25,9 @@ import object.sinhVien;
 public class connectionMysql {
 
     private static String USERNAME = "root";
-    private static String PASSWORD = "root";
+    private static String PASSWORD = "1111";
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private final String URL_DRIVER = "jdbc:mysql://localhost:8080/mydb?autoTeconnect=true&useSSL=false";
+    private final String URL_DRIVER = "jdbc:mysql://localhost:3306/sach_database?autoTeconnect=true&useSSL=false";
     Connection con = null;
     Statement st = null;
 

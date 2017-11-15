@@ -8,15 +8,12 @@ package design;
 import data.Update;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import data.connectionMysql;
-import java.sql.Connection;
-import object.sinhVien;
 
 /**
  *
@@ -96,6 +93,12 @@ public class frmSinhVien extends javax.swing.JFrame {
         jLabel3.setText("Tên Sinh Viên:");
 
         jLabel4.setText("Địa Chỉ");
+
+        txtMaSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaSVActionPerformed(evt);
+            }
+        });
 
         btnThemMoi.setText("Thêm Mới");
         btnThemMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -330,6 +333,10 @@ public class frmSinhVien extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void txtMaSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaSVActionPerformed
     public void hienThiDanhSachSinhVien() {
         String colTieuDe[] = new String[]{"Mã Sinh Viên", "Họ Và Tên", "Địa Chỉ"};
 

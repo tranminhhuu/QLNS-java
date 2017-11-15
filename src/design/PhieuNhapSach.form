@@ -236,7 +236,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="txtMaSach2" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <EmptySpace pref="111" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="txtMaSach3" min="-2" pref="133" max="-2" attributes="0"/>
