@@ -5,6 +5,10 @@
  */
 package Interface;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HungLuu
@@ -36,7 +40,7 @@ public class JLogin extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         btnLogIn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Phần mềm quản lí nhà sách");
 
@@ -49,6 +53,11 @@ public class JLogin extends javax.swing.JFrame {
         jPass.setText("Password");
 
         btnLogIn.setText("Đăng nhập");
+        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogInActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,16 +104,34 @@ public class JLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+        // TODO add your handling code here:
+//       if( txtAdminID.getText() == "root" | txtPass.getText() == "")
+//       {
+           JMenu main= new JMenu();
+           main.show();
+           close();
+//       }else
+//       {
+//           JOptionPane.showMessageDialog(this, "sai thông tin đăng nhập, vui lòng nhập lại");
+//       }
+    }//GEN-LAST:event_btnLogInActionPerformed
+
+    public void close(){
+        WindowEvent winClosingEvent= new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -150,4 +177,8 @@ public class JLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtAdminID;
     private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
+
+    private void If(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
