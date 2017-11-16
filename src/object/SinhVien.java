@@ -47,5 +47,6 @@ public class SinhVien {
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
+
     
 }

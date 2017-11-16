@@ -27,7 +27,7 @@ public class SinhVienData {
     }
 
     public static void Insert(SinhVien sv) {
-        String sql = "insert into sach values(?,?,?)";
+        String sql = "insert into sinhvien values(?,?,?)";
         try {
             ps = connectionMysql.getConnection().prepareStatement(sql);
             ps.setString(1, sv.getMaSV());
@@ -41,9 +41,9 @@ public class SinhVienData {
         connectionMysql.freeConnection();
     }
 
-    public boolean Update(SinhVien sv) {
+    public static boolean Update(SinhVien sv) {
         try {
-            ps = connectionMysql.getConnection().prepareStatement("UPDATE SịnhVien SET HoVaTen = ?, DiaChi = ? where MaSV = ?");
+            ps = connectionMysql.getConnection().prepareStatement("UPDATE sinhvien SET hovaten = ? , diachi = ? where masv = ?");
             ps.setString(3, sv.getMaSV());
             ps.setString(1, sv.getHoTen());
             ps.setString(2, sv.getDiaChi());
@@ -53,7 +53,7 @@ public class SinhVienData {
         }
     }
 
-    public boolean Delete(String Ma, String Masach) {
+    public static boolean Delete(String Masach) {
         try {
             ps = connectionMysql.getConnection().prepareStatement("DELETE FROM sinhvien WHERE  masv=?");
             ps.setString(1, Masach);

@@ -23,6 +23,8 @@ import data.connectionMysql;
  */
 public class frmSinhVien extends javax.swing.JFrame {
    connectionMysql conn = new connectionMysql();
+   SinhVien a = new SinhVien();
+
     /**
      * Creates new form fromSinhVien
      */
@@ -274,36 +276,22 @@ public class frmSinhVien extends javax.swing.JFrame {
 
     private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
 
-        //tạo đối tượng connectionMysql
-     SinhVien a =new SinhVien();
-     
-        try {
-            //khai báo đối tượng để thực hiện công việc
-            Statement st = conn.getConnection().createStatement();
-            //câu lệnh truy vấn:
-            String sql = "INSERT INTO sinhvien(MaSv,HoVaTen,DiaChi)VALUES('" + txtMaSV.getText().trim() + "','" + txtTenSinhVien.getText().trim() + "','" + txtDiaChi.getText().trim() + "')";
-            st.executeUpdate(sql);
-           
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(frmSinhVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         hienThiDanhSachSinhVien();
+
+            a.setMaSV(txtMaSV.getText().trim());
+            a.setHoTen(txtTenSinhVien.getText().trim());
+            a.setDiaChi(txtDiaChi.getText().trim());
+            SinhVienData.Insert(a);
+            hienThiDanhSachSinhVien();
+        
     }//GEN-LAST:event_btnThemMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        //tạo đối tượng connectionMysql
-    
-        try {
-            //khai báo đối tượng để thực hiện công việc
-            Statement st = conn.getConnection().createStatement();
-            //câu lệnh truy vấn:
-            String sql = "UPDATE SINHVIEN set HoVaTen='" + txtTenSinhVien.getText().trim() + "',DiaChi='" + txtDiaChi.getText().trim() + "' Where MaSV='" + txtMaSV.getText().trim() + "'";
-            st.executeUpdate(sql);
+           a.setMaSV(txtMaSV.getText().trim());
+            a.setHoTen(txtTenSinhVien.getText().trim());
+            a.setDiaChi(txtDiaChi.getText().trim());
+            SinhVienData.Update(a);
             hienThiDanhSachSinhVien();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmSinhVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -320,19 +308,12 @@ public class frmSinhVien extends javax.swing.JFrame {
     }//GEN-LAST:event_TableSinhVienKeyPressed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        //tạo đối tượng connectionMysql
-        connectionMysql conn = new connectionMysql();
-        try {
-            //khai báo đối tượng để thực hiện công việc
-            Statement st = conn.getConnection().createStatement();
-            //câu lệnh truy vấn:
-            String sql = "delete from sinhvien where MaSV='" + txtMaSV.getText().trim() + "'";
-            st.executeUpdate(sql);
+      
+            SinhVienData.Delete(txtMaSV.getText().trim());
             hienThiDanhSachSinhVien();
-            conn.freeConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmSinhVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            txtMaSV.setText("");
+            txtDiaChi.setText("");
+            txtTenSinhVien.setText("");
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
