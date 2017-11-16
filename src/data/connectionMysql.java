@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sun.applet.Main;
 import static sun.applet.Main.main;
-import object.sinhVien;
+import object.SinhVien;
 
 /**
  *
@@ -25,13 +25,13 @@ import object.sinhVien;
 public class connectionMysql {
 
     private static String USERNAME = "root";
-    private static String PASSWORD = "1111";
-    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private final String URL_DRIVER = "jdbc:mysql://localhost:3306/sach_database?autoTeconnect=true&useSSL=false";
-    Connection con = null;
-    Statement st = null;
+    private static String PASSWORD = "root";
+    static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+   // private final String URL_DRIVER = "jdbc:mysql://localhost:3306/sach_database?autoTeconnect=true&useSSL=false";
+    static String URL_DRIVER = "jdbc:mysql://localhost:8080/qlns?autoTeconnect=true&useSSL=false";
+    static Connection con = null;
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
             // driver register
             Class.forName(JDBC_DRIVER);
@@ -47,7 +47,7 @@ public class connectionMysql {
         return con;
     }
 
-    public  void freeConnection() {
+    public static void freeConnection() {
         try {
             con.close();
             System.out.println("Disconnected with "+con);

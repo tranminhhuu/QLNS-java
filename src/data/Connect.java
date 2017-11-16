@@ -31,9 +31,8 @@ public class Connect {
         try {
            
             //ket noi toi mysql
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sach_database?useUnicode=true&characterEncoding=UTF8",
-                    "root","1111");
-            
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sach_database?useUnicode=true&characterEncoding=UTF8","root","1111");
+            // con = DriverManager.getConnection("jdbc:mysql://localhost:8080/qlns?useUnicode=true&characterEncoding=UTF8","root","root");
         } catch (Exception e) {
             System.out.println("Kết nối tới mysql không thành công" +e);   
         }

@@ -6,6 +6,8 @@
 package design;
 
 import data.Update;
+import data.*;
+import object.*;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -20,7 +22,7 @@ import data.connectionMysql;
  * @author huu21
  */
 public class frmSinhVien extends javax.swing.JFrame {
-
+   connectionMysql conn = new connectionMysql();
     /**
      * Creates new form fromSinhVien
      */
@@ -273,24 +275,25 @@ public class frmSinhVien extends javax.swing.JFrame {
     private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
 
         //tạo đối tượng connectionMysql
-        connectionMysql conn = new connectionMysql();
+     SinhVien a =new SinhVien();
+     
         try {
             //khai báo đối tượng để thực hiện công việc
             Statement st = conn.getConnection().createStatement();
             //câu lệnh truy vấn:
             String sql = "INSERT INTO sinhvien(MaSv,HoVaTen,DiaChi)VALUES('" + txtMaSV.getText().trim() + "','" + txtTenSinhVien.getText().trim() + "','" + txtDiaChi.getText().trim() + "')";
             st.executeUpdate(sql);
-            hienThiDanhSachSinhVien();
-            conn.freeConnection();
+           
+           
         } catch (SQLException ex) {
             Logger.getLogger(frmSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+         hienThiDanhSachSinhVien();
     }//GEN-LAST:event_btnThemMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         //tạo đối tượng connectionMysql
-        connectionMysql conn = new connectionMysql();
+    
         try {
             //khai báo đối tượng để thực hiện công việc
             Statement st = conn.getConnection().createStatement();
@@ -298,7 +301,6 @@ public class frmSinhVien extends javax.swing.JFrame {
             String sql = "UPDATE SINHVIEN set HoVaTen='" + txtTenSinhVien.getText().trim() + "',DiaChi='" + txtDiaChi.getText().trim() + "' Where MaSV='" + txtMaSV.getText().trim() + "'";
             st.executeUpdate(sql);
             hienThiDanhSachSinhVien();
-            conn.freeConnection();
         } catch (SQLException ex) {
             Logger.getLogger(frmSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         }

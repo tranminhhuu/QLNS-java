@@ -9,16 +9,16 @@ package object;
  *
  * @author huu21
  */
-public class sinhVien {
+public class SinhVien {
     String maSV;
     String hoTen;
     String diaChi;
 
-    public sinhVien()
+    public SinhVien()
     {
         
     }
-    public sinhVien(String maSV, String hoTen, String diaChi) {
+    public SinhVien(String maSV, String hoTen, String diaChi) {
         this.maSV = maSV;
         this.hoTen = hoTen;
         this.diaChi = diaChi;
