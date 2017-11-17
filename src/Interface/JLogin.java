@@ -52,6 +52,12 @@ public class JLogin extends javax.swing.JFrame {
 
         jPass.setText("Password");
 
+        txtAdminID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAdminIDActionPerformed(evt);
+            }
+        });
+
         btnLogIn.setText("Đăng nhập");
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +132,10 @@ public class JLogin extends javax.swing.JFrame {
 //           JOptionPane.showMessageDialog(this, "sai thông tin đăng nhập, vui lòng nhập lại");
 //       }
     }//GEN-LAST:event_btnLogInActionPerformed
+
+    private void txtAdminIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAdminIDActionPerformed
 
     public void close(){
         WindowEvent winClosingEvent= new WindowEvent(this,WindowEvent.WINDOW_CLOSING);

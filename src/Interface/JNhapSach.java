@@ -7,6 +7,8 @@ package Interface;
 
 import data.Update;
 import data.Connect;
+import data.SachData;
+import data.SinhVienData;
 import static data.Update.ps;
 import static data.Update.rs;
 import data.connectionMysql;
@@ -19,33 +21,41 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+import object.Sach;
+import java.lang.Integer;
+import javax.swing.JPanel;
 
 /**
  *
  * @author HungLuu
  */
 public class JNhapSach extends javax.swing.JFrame {
+
     Connect con = new Connect();
     Connection conn = con.getConnect();
     String sqlts = "select * from thamso";
     String sqls = "select * from sach";
+    Sach s = new Sach();
 
     /**
      * Creates new form JNhapSach
      */
-    
     public JNhapSach() {
         initComponents();
+        txtNgayNhap.setText(Update.GetToDay());
+        txtMaPhieuNhap.setText(Update.CodeXXX());
         hienThiDanhSachSach();
     }
 
-    public void close(){
-        WindowEvent winClosingEvent= new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    public void close() {
+        WindowEvent winClosingEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +84,7 @@ public class JNhapSach extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtSLNhap = new javax.swing.JTextField();
         txtTheLoai = new javax.swing.JTextField();
+        btnNhapLai = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableSach = new javax.swing.JTable();
         txtNgayNhap = new javax.swing.JTextField();
@@ -104,6 +115,12 @@ public class JNhapSach extends javax.swing.JFrame {
 
         jLabel8.setText("Đơn giá");
 
+        txtMaSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaSachActionPerformed(evt);
+            }
+        });
+
         txtTenSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTenSachActionPerformed(evt);
@@ -126,9 +143,22 @@ public class JNhapSach extends javax.swing.JFrame {
 
         jLabel9.setText("Số lượng");
 
+        txtSLNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSLNhapActionPerformed(evt);
+            }
+        });
+
         txtTheLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTheLoaiActionPerformed(evt);
+            }
+        });
+
+        btnNhapLai.setText("Nhập lại");
+        btnNhapLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapLaiActionPerformed(evt);
             }
         });
 
@@ -137,30 +167,33 @@ public class JNhapSach extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnXacNhanThem, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(btnHuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(10, 10, 10))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addGap(20, 20, 20)))
-                        .addGap(10, 10, 10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTenSach, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                             .addComponent(txtTacGia, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtDonGia, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtSLNhap, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtMaSach)
-                            .addComponent(txtTheLoai))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addComponent(txtTheLoai))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnXacNhanThem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                    .addComponent(btnNhapLai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHuy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +222,9 @@ public class JNhapSach extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtSLNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnNhapLai)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnXacNhanThem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnHuy)
@@ -219,11 +254,14 @@ public class JNhapSach extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TableSach);
 
+        txtNgayNhap.setEnabled(false);
         txtNgayNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNgayNhapActionPerformed(evt);
             }
         });
+
+        txtMaPhieuNhap.setEnabled(false);
 
         jLabel10.setText("SL nhập tối thiểu");
 
@@ -294,9 +332,9 @@ public class JNhapSach extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(txtSLtoida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -319,7 +357,12 @@ public class JNhapSach extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
-       close();
+//      
+        int selected = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thoát "
+                + "khỏi chương trình không ?", "Thông báo", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (selected == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void txtSLtoithieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSLtoithieuActionPerformed
@@ -328,13 +371,25 @@ public class JNhapSach extends javax.swing.JFrame {
 
     private void btnXacNhanThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanThemActionPerformed
         // TODO add your handling code here:
-        
-      
+        if( txtMaSach.getText().isEmpty() | txtTenSach.getText().isEmpty() | txtTheLoai.getText().isEmpty() | txtTacGia.getText().isEmpty()  | txtSLNhap.getText().isEmpty() | txtDonGia.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin, vui lòng nhập lại!");
+        }else{
+            s.setMaSach(txtMaSach.getText().trim());
+            s.setTenSach(txtTenSach.getText().trim());
+            s.setTheLoai(txtTheLoai.getText().trim());
+            int SLN = Integer.parseInt(txtSLNhap.getText());
+            s.setSoLuongTon(SLN);
+            s.setTacGia(txtTacGia.getText().trim());
+            int DG = Integer.parseInt(txtDonGia.getText());
+            s.setDonGia(DG);
+            SachData.Insert(s);
+            hienThiDanhSachSach();
+        }
     }//GEN-LAST:event_btnXacNhanThemActionPerformed
 
     private void TableSachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TableSachKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_TableSachKeyPressed
 
     private void TableSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableSachMouseClicked
@@ -355,10 +410,28 @@ public class JNhapSach extends javax.swing.JFrame {
 
     private void txtTheLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTheLoaiActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtTheLoaiActionPerformed
 
-   public void hienThiDanhSachSach() {
+    private void txtMaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaSachActionPerformed
+
+    private void txtSLNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSLNhapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSLNhapActionPerformed
+
+    private void btnNhapLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapLaiActionPerformed
+        // TODO add your handling code here:
+       txtMaSach.setText("");
+       txtTenSach.setText("");
+       txtTacGia.setText("");
+       txtTheLoai.setText("");
+       txtSLNhap.setText("");
+       txtDonGia.setText("");
+    }//GEN-LAST:event_btnNhapLaiActionPerformed
+
+    public void hienThiDanhSachSach() {
 
         try {
             ps = conn.prepareStatement(sqls);
@@ -379,7 +452,8 @@ public class JNhapSach extends javax.swing.JFrame {
 
 //        con.FreeConnection();
     }
-   /**
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -417,6 +491,7 @@ public class JNhapSach extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableSach;
     private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnNhapLai;
     private javax.swing.JButton btnXacNhanThem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

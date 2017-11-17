@@ -44,7 +44,7 @@ public class SachData {
         }
     }
 
-    public boolean Update(Sach s) {
+    public static boolean Update(Sach s) {
         try {
             ps = Connect.getConnect().prepareStatement("UPDATE sach SET TenSach = ?, TheLoai = ?,TacGia=?,"
                     + "DonGia = ?,SoLuongTon=?  where MaSach = ?");
@@ -61,7 +61,7 @@ public class SachData {
         }
     }
 
-    public boolean Delete(String Ma, String Masach) {
+    public static boolean Delete( String Masach) {
         try {
             ps = Connect.getConnect().prepareStatement("DELETE FROM sach WHERE  masach=?");
             ps.setString(1, Masach);

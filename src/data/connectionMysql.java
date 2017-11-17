@@ -25,10 +25,10 @@ import object.SinhVien;
 public class connectionMysql {
 
     private static String USERNAME = "root";
-    private static String PASSWORD = "root";
+    private static String PASSWORD = "1111";
     static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-   // private final String URL_DRIVER = "jdbc:mysql://localhost:3306/sach_database?autoTeconnect=true&useSSL=false";
-    static String URL_DRIVER = "jdbc:mysql://localhost:8080/qlns?autoTeconnect=true&useSSL=false";
+    private static String URL_DRIVER = "jdbc:mysql://localhost:3306/sach_database?autoTeconnect=true&useSSL=false";
+//    static String URL_DRIVER = "jdbc:mysql://localhost:8080/qlns?autoTeconnect=true&useSSL=false";
     static Connection con = null;
 
     public static Connection getConnection() {

@@ -6,6 +6,7 @@
 package Interface;
 
 import data.Connect;
+import data.SachData;
 import data.Update;
 import static data.Update.ps;
 import static data.Update.rs;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+import object.Sach;
 
 /**
  *
@@ -34,6 +36,7 @@ public class JMain extends javax.swing.JFrame {
     String sqlKH = "select * from khachhang";
     String sqlBaoCaoCongNo = "select * from chitietbaocaocongno";
     String sqlBaoCaoTon = "select * from chitietbaocaoton";
+    Sach s = new Sach();
     /**
      * Creates new form JMain
      */
@@ -92,8 +95,9 @@ public class JMain extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbKhachHang = new javax.swing.JTable();
         btnThemKH = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnCapNhapKH = new javax.swing.JButton();
+        btnXoaKH = new javax.swing.JButton();
+        btnNhapLaiKH = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnBCTon = new javax.swing.JButton();
         btnBCCongNo = new javax.swing.JButton();
@@ -179,6 +183,11 @@ public class JMain extends javax.swing.JFrame {
         });
 
         btnXóa.setText("Xóa");
+        btnXóa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXóaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -316,9 +325,21 @@ public class JMain extends javax.swing.JFrame {
 
         btnThemKH.setText("Đăng kí khách hàng mới");
 
-        jButton3.setText("Cập nhật thông tin khách hàng");
+        btnCapNhapKH.setText("Cập nhật thông tin khách hàng");
+        btnCapNhapKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhapKHActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Xóa khách hàng");
+        btnXoaKH.setText("Xóa khách hàng");
+
+        btnNhapLaiKH.setText("Nhập lại");
+        btnNhapLaiKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapLaiKHActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -351,8 +372,9 @@ public class JMain extends javax.swing.JFrame {
                                     .addComponent(txtDiaChiKH)
                                     .addComponent(txtSoTienNo, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
                             .addComponent(btnThemKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnCapNhapKH, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(btnXoaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnNhapLaiKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -387,15 +409,17 @@ public class JMain extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(txtDiaChiKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(txtSoTienNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSoTienNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(17, 17, 17)
+                        .addComponent(btnNhapLaiKH)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnThemKH)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btnCapNhapKH)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btnXoaKH)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
                 .addContainerGap())
@@ -541,11 +565,11 @@ public class JMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSach, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
+            .addComponent(tabSach)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSach, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+            .addComponent(tabSach)
         );
 
         pack();
@@ -654,6 +678,16 @@ public class JMain extends javax.swing.JFrame {
 
     private void btnCapNhatSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatSachActionPerformed
         // TODO add your handling code here:
+             s.setMaSach(txtMaSach.getText().trim());
+            s.setTenSach(txtTenSach.getText().trim());
+            s.setTheLoai(txtTheLoai.getText().trim());
+            int SLN = Integer.parseInt(txtSLNhap.getText());
+            s.setSoLuongTon(SLN);
+            s.setTacGia(txtTacGia.getText().trim());
+            int DG = Integer.parseInt(txtDonGia.getText());
+            s.setDonGia(DG);
+            SachData.Update(s);
+            hienThiDanhSachSach();
     }//GEN-LAST:event_btnCapNhatSachActionPerformed
 
     private void txtMaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSachActionPerformed
@@ -705,6 +739,21 @@ public class JMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         hienThiBaoCaoCongNo();
     }//GEN-LAST:event_btnBCCongNoActionPerformed
+
+    private void btnXóaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXóaActionPerformed
+        // TODO add your handling code here:
+            SachData.Delete(txtMaSach.getText().trim());
+            hienThiDanhSachSach();
+    }//GEN-LAST:event_btnXóaActionPerformed
+
+    private void btnCapNhapKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCapNhapKHActionPerformed
+
+    private void btnNhapLaiKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapLaiKHActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnNhapLaiKHActionPerformed
                                       
 
     /**
@@ -747,7 +796,9 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JTable TableSach;
     private javax.swing.JButton btnBCCongNo;
     private javax.swing.JButton btnBCTon;
+    private javax.swing.JButton btnCapNhapKH;
     private javax.swing.JButton btnCapNhatSach;
+    private javax.swing.JButton btnNhapLaiKH;
     private javax.swing.JButton btnQDHuy;
     private javax.swing.JButton btnQDLuu;
     private javax.swing.JButton btnQDMacDinh;
@@ -755,10 +806,9 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JButton btnThemSach;
     private javax.swing.JButton btnTimKH;
     private javax.swing.JButton btnTimSach;
+    private javax.swing.JButton btnXoaKH;
     private javax.swing.JButton btnXóa;
     private javax.swing.JCheckBox cbVuotTienNo;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

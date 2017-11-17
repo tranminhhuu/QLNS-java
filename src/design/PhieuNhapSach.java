@@ -129,6 +129,11 @@ public class PhieuNhapSach extends javax.swing.JFrame {
         txtTime.setEditable(false);
         txtTime.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtTime.setForeground(new java.awt.Color(204, 204, 255));
+        txtTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -435,6 +440,10 @@ public class PhieuNhapSach extends javax.swing.JFrame {
     private void TableSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableSachMouseClicked
       
     }//GEN-LAST:event_TableSachMouseClicked
+
+    private void txtTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimeActionPerformed
 
     /**
      * @param args the command line arguments
