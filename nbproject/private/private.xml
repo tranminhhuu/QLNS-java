@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/JAVA/Project/QLNS-java/src/data/Connect.java</file>
-            <file>file:/E:/JAVA/Project/QLNS-java/src/data/Update.java</file>
-            <file>file:/E:/JAVA/Project/QLNS-java/src/design/PhieuNhapSach.java</file>
-            <file>file:/E:/JAVA/Project/QLNS-java/src/Interface/JNhapSach.java</file>
-            <file>file:/E:/JAVA/Project/QLNS-java/src/design/frmSinhVien.java</file>
-            <file>file:/E:/JAVA/Project/QLNS-java/src/data/connectionMysql.java</file>
+            <file>file:/E:/JAVA/Project/QLNS-java/src/data/ThamSoData.java</file>
+            <file>file:/E:/JAVA/Project/QLNS-java/src/object/ThamSo.java</file>
             <file>file:/E:/JAVA/Project/QLNS-java/src/Interface/JMain.java</file>
+            <file>file:/E:/JAVA/Project/QLNS-java/src/object/Sach.java</file>
             <file>file:/E:/JAVA/Project/QLNS-java/src/data/SachData.java</file>
         </group>
     </open-files>

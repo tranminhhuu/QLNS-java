@@ -408,6 +408,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMaKH">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTenKH">
               <Events>
@@ -454,6 +457,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng k&#xed; kh&#xe1;ch h&#xe0;ng m&#x1edb;i"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemKHActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCapNhapKH">
               <Properties>
@@ -467,6 +473,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="X&#xf3;a kh&#xe1;ch h&#xe0;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaKHActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnNhapLaiKH">
               <Properties>
@@ -575,34 +584,26 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cbVuotTienNo" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtQDNhapMin" max="32767" attributes="0"/>
-                                  <Component id="txtQDTonTrcKhiNhap" max="32767" attributes="0"/>
-                                  <Component id="txtQDTienNoMax" max="32767" attributes="0"/>
-                                  <Component id="txtQDTonMinSauKhiBan" pref="163" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnQDMacDinh" max="32767" attributes="0"/>
-                                  <Component id="btnQDHuy" max="32767" attributes="0"/>
-                                  <Component id="btnQDLuu" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="116" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtQDTonTrcKhiNhap" max="32767" attributes="0"/>
+                          <Component id="txtQDTienNoMax" max="32767" attributes="0"/>
+                          <Component id="txtQDTonMinSauKhiBan" pref="163" max="32767" attributes="0"/>
+                          <Component id="txtApDungQD" max="32767" attributes="0"/>
+                          <Component id="txtQDNhapMin" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnQDMacDinh" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnQDLuu" min="-2" pref="75" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="197" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -613,33 +614,32 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtQDNhapMin" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnQDLuu" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnQDMacDinh" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtQDTonTrcKhiNhap" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnQDMacDinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnQDLuu" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                           <Component id="txtQDTienNoMax" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnQDHuy" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                           <Component id="txtQDTonMinSauKhiBan" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbVuotTienNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtApDungQD" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="224" max="32767" attributes="0"/>
+                      <EmptySpace pref="225" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -671,6 +671,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtQDNhapMin">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQDNhapMinActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtQDTonTrcKhiNhap">
             </Component>
@@ -678,22 +681,26 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtQDTonMinSauKhiBan">
             </Component>
-            <Component class="javax.swing.JCheckBox" name="cbVuotTienNo">
-            </Component>
-            <Component class="javax.swing.JButton" name="btnQDHuy">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="h&#x1ee7;y"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btnQDMacDinh">
               <Properties>
                 <Property name="text" type="java.lang.String" value="M&#x1eb7;c &#x111;&#x1ecb;nh"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQDMacDinhActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnQDLuu">
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQDLuuActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtApDungQD">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApDungQDActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

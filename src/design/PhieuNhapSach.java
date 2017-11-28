@@ -125,6 +125,11 @@ public class PhieuNhapSach extends javax.swing.JFrame {
         txtMaPhieuNhap.setBackground(new java.awt.Color(240, 240, 240));
         txtMaPhieuNhap.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
         txtMaPhieuNhap.setEnabled(false);
+        txtMaPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaPhieuNhapActionPerformed(evt);
+            }
+        });
 
         txtTime.setEditable(false);
         txtTime.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -191,6 +196,11 @@ public class PhieuNhapSach extends javax.swing.JFrame {
         txtTenSinhVien.setEditable(false);
         txtTenSinhVien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtTenSinhVien.setEnabled(false);
+        txtTenSinhVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenSinhVienActionPerformed(evt);
+            }
+        });
 
         txtMaSach1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -320,6 +330,11 @@ public class PhieuNhapSach extends javax.swing.JFrame {
 
         txtDK2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         txtDK2.setEnabled(false);
+        txtDK2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDK2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -444,6 +459,18 @@ public class PhieuNhapSach extends javax.swing.JFrame {
     private void txtTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimeActionPerformed
+
+    private void txtMaPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPhieuNhapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaPhieuNhapActionPerformed
+
+    private void txtTenSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSinhVienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenSinhVienActionPerformed
+
+    private void txtDK2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDK2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDK2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -11,26 +11,26 @@ package object;
  */
 public class KhachHang {
     String HoTenKhachHang,DiaChi,Emaill,SoDienThoai;
-    float SoTienNo;
-    int MaKhachHang;
+    int SoTienNo;
+    String MaKhachHang;
 
     public KhachHang() {
     }
 
-    public KhachHang(int MaKhachHang, String HoTenKhachHang, String DiaChi, String Emaill, String SoDienThoai, float SoTienNo) {
+    public KhachHang(String MaKhachHang, String HoTenKhachHang, String DiaChi, String Emaill, String SoDienThoai, int SoTienNo) {
         this.MaKhachHang = MaKhachHang;
         this.HoTenKhachHang = HoTenKhachHang;
         this.DiaChi = DiaChi;
         this.Emaill = Emaill;
         this.SoDienThoai = SoDienThoai;
-        this.SoTienNo = SoTienNo;
+        this.SoTienNo =  SoTienNo;
     }
 
-    public int getMaKhachHang() {
+    public String getMaKhachHang() {
         return MaKhachHang;
     }
 
-    public void setMaKhachHang(int MaKhachHang) {
+    public void setMaKhachHang(String MaKhachHang) {
         this.MaKhachHang = MaKhachHang;
     }
 
@@ -66,11 +66,11 @@ public class KhachHang {
         this.SoDienThoai = SoDienThoai;
     }
 
-    public float getSoTienNo() {
+    public int getSoTienNo() {
         return SoTienNo;
     }
 
-    public void setSoTienNo(float SoTienNo) {
+    public void setSoTienNo(int SoTienNo) {
         this.SoTienNo = SoTienNo;
     }
     
