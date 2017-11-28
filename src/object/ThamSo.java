@@ -11,53 +11,32 @@ package object;
  */
 public class ThamSo {
 
-//    int SoLuongNhapItNhat = 50, 
-//            SoLuongTonToiThieu=10,
-//            SoLuongTonToiDaTruocKhiNhap=200,
-//            SoLuongTonToiThieuSauKhiBan=10,
-//            ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo =1;
+
     int MaThamSo;
-    int SoLuongNhapItNhat, SoTienNoToiDa, SoLuongTonToiDaTruocKhiNhap, SoLuongTonToiThieuSauKhiBan;
+    int SoLuongNhapItNhat, 
+            SoTienNoToiDa, 
+            SoLuongTonToiDaTruocKhiNhap, 
+            SoLuongTonToiThieuSauKhiBan;
     int ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo;
-    
-    public int getSoTienNoToiDa() {
-        return SoTienNoToiDa;
+
+    public ThamSo(int MaThamSo, int SoLuongNhapItNhat, int SoTienNoToiDa, int SoLuongTonToiDaTruocKhiNhap, int SoLuongTonToiThieuSauKhiBan, int ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo) {
+        this.MaThamSo = MaThamSo;
+        this.SoLuongNhapItNhat = SoLuongNhapItNhat;
+        this.SoTienNoToiDa = SoTienNoToiDa;
+        this.SoLuongTonToiDaTruocKhiNhap = SoLuongTonToiDaTruocKhiNhap;
+        this.SoLuongTonToiThieuSauKhiBan = SoLuongTonToiThieuSauKhiBan;
+        this.ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo = ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo;
     }
 
-//    public int getSoLuongNhapItNhat() {
-//        return SoLuongNhapItNhat;
-//    }
-//
-//    public void setSoLuongNhapItNhat(int SoLuongNhapItNhat) {
-//        this.SoLuongNhapItNhat = SoLuongNhapItNhat;
-//    }
-//
-//    public int getSoLuongTonToiThieu() {
-//        return SoLuongTonToiThieu;
-//    }
-//
-//    public void setSoLuongTonToiThieu(int SoLuongTonToiThieu) {
-//        this.SoLuongTonToiThieu = SoLuongTonToiThieu;
-//    }
-//
-//    public int getSoLuongTonToiDaTruocKhiNhap() {
-//        return SoLuongTonToiDaTruocKhiNhap;
-//    }
-//
-//    public void setSoLuongTonToiDaTruocKhiNhap(int SoLuongTonToiDaTruocKhiNhap) {
-//        this.SoLuongTonToiDaTruocKhiNhap = SoLuongTonToiDaTruocKhiNhap;
-//    }
-//
-//    public int getSoLuongTonToiThieuSauKhiBan() {
-//        return SoLuongTonToiThieuSauKhiBan;
-//    }
-//
-//    public void setSoLuongTonToiThieuSauKhiBan(int SoLuongTonToiThieuSauKhiBan) {
-//        this.SoLuongTonToiThieuSauKhiBan = SoLuongTonToiThieuSauKhiBan;
-//    }
-//    
-    public void setSoTienNoToiDa(int SoTienNoToiDa) {
-        this.SoTienNoToiDa = SoTienNoToiDa;
+    public ThamSo() {
+    }
+
+    public int getMaThamSo() {
+        return MaThamSo;
+    }
+
+    public void setMaThamSo(int MaThamSo) {
+        this.MaThamSo = MaThamSo;
     }
 
     public int getSoLuongNhapItNhat() {
@@ -68,20 +47,28 @@ public class ThamSo {
         this.SoLuongNhapItNhat = SoLuongNhapItNhat;
     }
 
+    public int getSoTienNoToiDa() {
+        return SoTienNoToiDa;
+    }
+
+    public void setSoTienNoToiDa(int SoTienNoToiDa) {
+        this.SoTienNoToiDa = SoTienNoToiDa;
+    }
+
     public int getSoLuongTonToiDaTruocKhiNhap() {
         return SoLuongTonToiDaTruocKhiNhap;
     }
 
-    public void setSoLuongTonToiDaTruocKhiNhap(int soLuongTonToiDaTruocKhiNhap) {
-        this.SoLuongTonToiDaTruocKhiNhap = soLuongTonToiDaTruocKhiNhap;
+    public void setSoLuongTonToiDaTruocKhiNhap(int SoLuongTonToiDaTruocKhiNhap) {
+        this.SoLuongTonToiDaTruocKhiNhap = SoLuongTonToiDaTruocKhiNhap;
     }
 
     public int getSoLuongTonToiThieuSauKhiBan() {
         return SoLuongTonToiThieuSauKhiBan;
     }
 
-    public void setSoLuongTonToiThieuSauKhiBan(int soLuongTonToiThieuSauKhiBan) {
-        this.SoLuongTonToiThieuSauKhiBan = soLuongTonToiThieuSauKhiBan;
+    public void setSoLuongTonToiThieuSauKhiBan(int SoLuongTonToiThieuSauKhiBan) {
+        this.SoLuongTonToiThieuSauKhiBan = SoLuongTonToiThieuSauKhiBan;
     }
 
     public int getApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo() {
@@ -91,12 +78,5 @@ public class ThamSo {
     public void setApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo(int ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo) {
         this.ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo = ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo;
     }
-
-    public int getMaThamSo() {
-        return MaThamSo;
-    }
-
-    public void setMaThamSo(int MaThamSo) {
-        this.MaThamSo = MaThamSo;
-    }
+   
 }

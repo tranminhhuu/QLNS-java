@@ -899,10 +899,10 @@ public class JMain extends javax.swing.JFrame {
             String QDTonMin = txtQDTonMinSauKhiBan.getText().trim();
             int QDTonMin2 = Integer.parseInt(QDTonMin);
 
-            ts.setSoLuongNhapItNhat(1);
-            ts.setSoLuongTonToiDaTruocKhiNhap(2);
-            ts.setSoLuongTonToiThieuSauKhiBan(2);
-            ts.setSoTienNoToiDa(2);
+            ts.setSoLuongNhapItNhat(QDNhapMin2);
+            ts.setSoLuongTonToiDaTruocKhiNhap(QDTonTrc2);
+            ts.setSoLuongTonToiThieuSauKhiBan(QDTienNoMax2);
+            ts.setSoTienNoToiDa(QDTonMin2);
             ts.setApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo(j);
             ThamSoData.Update(ts);
             hienThiThamSo();

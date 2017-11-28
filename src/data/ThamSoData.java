@@ -32,7 +32,7 @@ public class ThamSoData {
 
     public static boolean Update(ThamSo t) {
            try {
-            ps = Connect.getConnect().prepareStatement("UPDATE thamso SET SoLuongNhapItNhat =?, SoLuongTonToiDaTruocKhiNhap = ?, SoTienNoToiDa = ?, SoLuongTonToiThieuSauKhiBan = ?, ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo =?  where MaSach = ?");
+            ps = Connect.getConnect().prepareStatement("UPDATE thamso SET SoLuongNhapItNhat =?, SoLuongTonToiDaTruocKhiNhap = ?, SoTienNoToiDa = ?, SoLuongTonToiThieuSauKhiBan = ?, ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo =?  where mathamso = ?");
          
             ps.setInt(6, t.getMaThamSo());
             ps.setInt(1, t.getSoLuongNhapItNhat());
