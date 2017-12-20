@@ -8,12 +8,9 @@ package Interface;
 import data.Update;
 import data.Connect;
 import data.SachData;
-import data.SinhVienData;
 import static data.Update.ps;
 import static data.Update.rs;
 import data.connectionMysql;
-import design.PhieuNhapSach;
-import design.frmSinhVien;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
@@ -27,6 +24,7 @@ import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 import object.Sach;
 import java.lang.Integer;
+import java.sql.ResultSet;
 import javax.swing.JPanel;
 
 /**
@@ -40,6 +38,7 @@ public class JNhapSach extends javax.swing.JFrame {
     String sqlts = "select * from thamso";
     String sqls = "select * from sach";
     Sach s = new Sach();
+    int SLnhapItnhat;
 
     /**
      * Creates new form JNhapSach
@@ -48,6 +47,7 @@ public class JNhapSach extends javax.swing.JFrame {
         initComponents();
         txtNgayNhap.setText(Update.GetToDay());
         txtMaPhieuNhap.setText(Update.CodeXXX());
+        txtMaSach.setText(Update.CodeXXX());
         hienThiDanhSachSach();
     }
 
@@ -115,6 +115,7 @@ public class JNhapSach extends javax.swing.JFrame {
 
         jLabel8.setText("Đơn giá");
 
+        txtMaSach.setEnabled(false);
         txtMaSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaSachActionPerformed(evt);
@@ -370,20 +371,35 @@ public class JNhapSach extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSLtoithieuActionPerformed
 
     private void btnXacNhanThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanThemActionPerformed
-        // TODO add your handling code here:
-        if( txtMaSach.getText().isEmpty() | txtTenSach.getText().isEmpty() | txtTheLoai.getText().isEmpty() | txtTacGia.getText().isEmpty()  | txtSLNhap.getText().isEmpty() | txtDonGia.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin, vui lòng nhập lại!");
-        }else{
-            s.setMaSach(txtMaSach.getText().trim());
-            s.setTenSach(txtTenSach.getText().trim());
-            s.setTheLoai(txtTheLoai.getText().trim());
-            int SLN = Integer.parseInt(txtSLNhap.getText());
-            s.setSoLuongTon(SLN);
-            s.setTacGia(txtTacGia.getText().trim());
-            int DG = Integer.parseInt(txtDonGia.getText());
-            s.setDonGia(DG);
-            SachData.Insert(s);
-            hienThiDanhSachSach();
+        // TODO add your handling code here
+        try {
+            String search = "SELECT * FROM ThamSo WHERE MaThamSo='" + 1 + "'";
+            ResultSet rs = Connect.getData(search);
+            if (rs.first()) {
+                String NhapToiThieu = rs.getString("SoLuongNhapItNhat");
+                SLnhapItnhat = Integer.valueOf(NhapToiThieu);
+            }
+        } catch (SQLException e) {
+        }
+
+        int slNhap = Integer.valueOf(txtSLNhap.getText());
+        if (slNhap < SLnhapItnhat) {
+            JOptionPane.showMessageDialog(this, "Số lượng sách nhập vào chưa đạt yêu cầu, vui lòng liên hệ nhà cung cấp!");
+        } else {
+            if (txtMaSach.getText().isEmpty() | txtTenSach.getText().isEmpty() | txtTheLoai.getText().isEmpty() | txtTacGia.getText().isEmpty() | txtSLNhap.getText().isEmpty() | txtDonGia.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin, vui lòng nhập lại!");
+            } else {
+                s.setMaSach(txtMaSach.getText().trim());
+                s.setTenSach(txtTenSach.getText().trim());
+                s.setTheLoai(txtTheLoai.getText().trim());
+                int SLN = Integer.parseInt(txtSLNhap.getText());
+                s.setSoLuongTon(SLN);
+                s.setTacGia(txtTacGia.getText().trim());
+                int DG = Integer.parseInt(txtDonGia.getText());
+                s.setDonGia(DG);
+                SachData.Insert(s);
+                hienThiDanhSachSach();
+            }
         }
     }//GEN-LAST:event_btnXacNhanThemActionPerformed
 
@@ -423,12 +439,12 @@ public class JNhapSach extends javax.swing.JFrame {
 
     private void btnNhapLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapLaiActionPerformed
         // TODO add your handling code here:
-       txtMaSach.setText("");
-       txtTenSach.setText("");
-       txtTacGia.setText("");
-       txtTheLoai.setText("");
-       txtSLNhap.setText("");
-       txtDonGia.setText("");
+        txtMaSach.setText(Update.CodeXXX());
+        txtTenSach.setText("");
+        txtTacGia.setText("");
+        txtTheLoai.setText("");
+        txtSLNhap.setText("");
+        txtDonGia.setText("");
     }//GEN-LAST:event_btnNhapLaiActionPerformed
 
     public void hienThiDanhSachSach() {
@@ -437,7 +453,6 @@ public class JNhapSach extends javax.swing.JFrame {
             ps = conn.prepareStatement(sqls);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuNhapSach.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         TableSach.setModel(DbUtils.resultSetToTableModel(rs));

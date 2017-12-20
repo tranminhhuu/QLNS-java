@@ -5,8 +5,10 @@
  */
 package data;
 
+import static data.ThamSoData.ps;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -31,8 +33,8 @@ public class Connect {
         try {
            
             //ket noi toi mysql
-           //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sach_database?useUnicode=true&characterEncoding=UTF8","root","1111");
-             con = DriverManager.getConnection("jdbc:mysql://localhost:8080/qlns?useUnicode=true&characterEncoding=UTF8","root","root");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sach_database?useUnicode=true&characterEncoding=UTF8","root","1111");
+           //  con = DriverManager.getConnection("jdbc:mysql://localhost:8080/qlns?useUnicode=true&characterEncoding=UTF8","root","root");
         } catch (Exception e) {
             System.out.println("Kết nối tới mysql không thành công" +e);   
         }
@@ -61,6 +63,22 @@ public class Connect {
         }
     } 
     
+   public static ResultSet setData(String sql) {
+        try {
+            ps = Connect.getConnect().prepareStatement(sql);
+            return ps.executeQuery();
+        } catch (Exception e) {
+            return null;
+        }
+   }
+     public static ResultSet getData(String sql) {
+        try {
+            ps = Connect.getConnect().prepareStatement(sql);
+            return ps.executeQuery();
+        } catch (Exception e) {
+            return null;
+        }
+     }
     public static void main(String[] args) {
          System.out.println(TestConnect());
         FreeConnection();

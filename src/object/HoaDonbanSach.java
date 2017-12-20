@@ -13,13 +13,14 @@ import java.sql.Date;
  */
 public class HoaDonbanSach {
     String MaHoaDonBanSach;
-    int MaKhachHang,TongHoaDon;
-    Date NgayLapHoaDon;
+    int TongHoaDon;
+    String NgayLapHoaDon;
+    String MaKhachHang;
 
     public HoaDonbanSach() {
     }
 
-    public HoaDonbanSach(String MaHoaDonBanSach, int MaKhachHang, int TongHoaDon, Date NgayLapHoaDon) {
+    public HoaDonbanSach(String MaHoaDonBanSach, String MaKhachHang, int TongHoaDon, String NgayLapHoaDon) {
         this.MaHoaDonBanSach = MaHoaDonBanSach;
         this.MaKhachHang = MaKhachHang;
         this.TongHoaDon = TongHoaDon;
@@ -34,11 +35,11 @@ public class HoaDonbanSach {
         this.MaHoaDonBanSach = MaHoaDonBanSach;
     }
 
-    public int getMaKhachHang() {
+    public String getMaKhachHang() {
         return MaKhachHang;
     }
 
-    public void setMaKhachHang(int MaKhachHang) {
+    public void setMaKhachHang(String MaKhachHang) {
         this.MaKhachHang = MaKhachHang;
     }
 
@@ -50,11 +51,11 @@ public class HoaDonbanSach {
         this.TongHoaDon = TongHoaDon;
     }
 
-    public Date getNgayLapHoaDon() {
+    public String getNgayLapHoaDon() {
         return NgayLapHoaDon;
     }
 
-    public void setNgayLapHoaDon(Date NgayLapHoaDon) {
+    public void setNgayLapHoaDon(String NgayLapHoaDon) {
         this.NgayLapHoaDon = NgayLapHoaDon;
     }
     

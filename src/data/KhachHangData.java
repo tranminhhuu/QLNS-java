@@ -6,7 +6,6 @@
 package data;
 
 import static data.SachData.ps;
-import static data.SinhVienData.ps;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;

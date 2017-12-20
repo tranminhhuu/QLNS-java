@@ -13,9 +13,6 @@ import data.Update;
 import static data.Update.ps;
 import static data.Update.rs;
 import data.connectionMysql;
-import design.PhieuNhapSach;
-import design.frmSinhVien;
-import design.test;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +26,7 @@ import net.proteanit.sql.DbUtils;
 import object.KhachHang;
 import object.Sach;
 import object.ThamSo;
-
+    
 /**
  *
  * @author HungLuu
@@ -72,8 +69,6 @@ public class JMain extends javax.swing.JFrame {
 
         tabSach = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        txtTimKiemSach = new javax.swing.JTextField();
-        btnTimSach = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -91,9 +86,10 @@ public class JMain extends javax.swing.JFrame {
         btnCapNhatSach = new javax.swing.JButton();
         btnXóa = new javax.swing.JButton();
         txtTheLoai = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        txtSachTimKiem = new javax.swing.JTextField();
+        btnSearchSach = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        txtTimKH = new javax.swing.JTextField();
-        btnTimKH = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -112,6 +108,8 @@ public class JMain extends javax.swing.JFrame {
         btnCapNhapKH = new javax.swing.JButton();
         btnXoaKH = new javax.swing.JButton();
         btnNhapLaiKH = new javax.swing.JButton();
+        txtKHTimKiem = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnBCTon = new javax.swing.JButton();
         btnBCCongNo = new javax.swing.JButton();
@@ -129,13 +127,10 @@ public class JMain extends javax.swing.JFrame {
         txtQDTonMinSauKhiBan = new javax.swing.JTextField();
         btnQDMacDinh = new javax.swing.JButton();
         btnQDLuu = new javax.swing.JButton();
-        txtApDungQD = new javax.swing.JTextField();
+        cbApDung = new javax.swing.JCheckBox();
+        txtCoOKo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        txtTimKiemSach.setText("nhập mã sách mà bạn muốn tìm");
-
-        btnTimSach.setText("Tìm sách");
 
         jLabel1.setText("Mã Sách");
 
@@ -149,6 +144,7 @@ public class JMain extends javax.swing.JFrame {
 
         jLabel6.setText("SL tồn");
 
+        txtMaSach.setEnabled(false);
         txtMaSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaSachActionPerformed(evt);
@@ -202,6 +198,20 @@ public class JMain extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Reload");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnSearchSach.setText("Tìm Sách");
+        btnSearchSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchSachActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -209,13 +219,6 @@ public class JMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtTimKiemSach, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTimSach)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnThemSach, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -234,21 +237,29 @@ public class JMain extends javax.swing.JFrame {
                                     .addComponent(txtDonGia)
                                     .addComponent(txtSLNhap)
                                     .addComponent(txtTheLoai)))
-                            .addComponent(btnCapNhatSach, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                            .addComponent(btnXóa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnCapNhatSach, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .addComponent(btnXóa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnThemSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSachTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchSach)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(19, 19, 19))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTimKiemSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimSach)
-                    .addComponent(btnThemSach))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton1)
+                    .addComponent(txtSachTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchSach))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -277,17 +288,15 @@ public class JMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCapNhatSach)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnThemSach)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnXóa)
-                        .addGap(0, 105, Short.MAX_VALUE))
+                        .addGap(0, 68, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         tabSach.addTab("Quản lý Sách", jPanel1);
-
-        txtTimKH.setText("nhập mã khác hàng mà bạn muốn tìm");
-
-        btnTimKH.setText("Tìm khách hàng");
 
         jLabel7.setText("Mã Khách hàng");
 
@@ -366,6 +375,13 @@ public class JMain extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Tìm khách hàng");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -374,9 +390,9 @@ public class JMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtTimKH, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTimKH)
+                        .addComponent(txtKHTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -397,7 +413,7 @@ public class JMain extends javax.swing.JFrame {
                                     .addComponent(txtDiaChiKH)
                                     .addComponent(txtSoTienNo, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
                             .addComponent(btnThemKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCapNhapKH, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(btnCapNhapKH, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                             .addComponent(btnXoaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnNhapLaiKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -407,11 +423,11 @@ public class JMain extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTimKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKH))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtKHTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -446,7 +462,7 @@ public class JMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnXoaKH)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -508,6 +524,8 @@ public class JMain extends javax.swing.JFrame {
 
         tabSach.addTab("Admin và Báo cáo nhà sách", jPanel3);
 
+        jPanel4.setAlignmentX(10);
+
         jLabel13.setText("Số lượng nhập ít nhất");
 
         jLabel14.setText("Số lượng tồn trước khi nhập");
@@ -538,11 +556,7 @@ public class JMain extends javax.swing.JFrame {
             }
         });
 
-        txtApDungQD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApDungQDActionPerformed(evt);
-            }
-        });
+        txtCoOKo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -551,23 +565,29 @@ public class JMain extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(161, 161, 161))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(21, 21, 21)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtQDTonTrcKhiNhap)
-                    .addComponent(txtQDTienNoMax)
-                    .addComponent(txtQDTonMinSauKhiBan, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                    .addComponent(txtApDungQD)
-                    .addComponent(txtQDNhapMin))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(txtCoOKo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbApDung))
+                    .addComponent(txtQDTonTrcKhiNhap, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtQDTienNoMax, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtQDTonMinSauKhiBan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(txtQDNhapMin, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnQDMacDinh)
                     .addComponent(btnQDLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,15 +607,17 @@ public class JMain extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(txtQDTienNoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtQDTonMinSauKhiBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(txtApDungQD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17)
+                        .addComponent(txtCoOKo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbApDung))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         tabSach.addTab("Chỉnh sửa quy định trong quản lí nhà sách", jPanel4);
@@ -619,7 +641,6 @@ public class JMain extends javax.swing.JFrame {
             ps = conn.prepareStatement(sqlBaoCaoCongNo);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuNhapSach.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         tbBaoCao.setModel(DbUtils.resultSetToTableModel(rs));
@@ -638,7 +659,6 @@ public class JMain extends javax.swing.JFrame {
             ps = conn.prepareStatement(sqlBaoCaoTon);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuNhapSach.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         tbBaoCao.setModel(DbUtils.resultSetToTableModel(rs));
@@ -658,7 +678,6 @@ public class JMain extends javax.swing.JFrame {
             ps = conn.prepareStatement(sqls);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuNhapSach.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         TableSach.setModel(DbUtils.resultSetToTableModel(rs));
@@ -680,7 +699,6 @@ public class JMain extends javax.swing.JFrame {
             ps = conn.prepareStatement(sqlKH);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuNhapSach.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         tbKhachHang.setModel(DbUtils.resultSetToTableModel(rs));
@@ -704,22 +722,23 @@ public class JMain extends javax.swing.JFrame {
 
         try {
             if (rs.next()) {
-                txtQDNhapMin.setText(rs.getString("Soluongnhapitnhat"));
-                txtQDTonTrcKhiNhap.setText(rs.getString("soluongtontoidatruockhinhap"));
+                txtQDNhapMin.setText(rs.getString("SoLuongNhapItNhat"));
+                txtQDTonTrcKhiNhap.setText(rs.getString("SoLuongTonToiDaTruocKhiNhap"));
+                txtQDTienNoMax.setText(rs.getString("SoTienNoToiDa"));
+                txtQDTonMinSauKhiBan.setText(rs.getString("SoLuongTonToiThieuSauKhiBan"));
+                int i = rs.getInt("ApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo");
+                if(i == 1 )
+                {
+                    txtCoOKo.setText("có");
+                }else{
+                    txtCoOKo.setText("Không");
+                }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuNhapSach.class.getName()).log(Level.SEVERE, null, ex);
+          
         }
     }
 
-
-    private void txtTenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenKHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenKHActionPerformed
-
-    private void txtDiaChiKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiKHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDiaChiKHActionPerformed
 
     private void btnThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSachActionPerformed
         JNhapSach NS = new JNhapSach();
@@ -742,6 +761,7 @@ public class JMain extends javax.swing.JFrame {
             s.setDonGia(DG);
             SachData.Update(s);
             hienThiDanhSachSach();
+            JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
         }
     }//GEN-LAST:event_btnCapNhatSachActionPerformed
 
@@ -769,22 +789,6 @@ public class JMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TableSachKeyPressed
 
-    private void tbKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhachHangMouseClicked
-        // TODO add your handling code here:
-        int i = tbKhachHang.getSelectedRow();
-        TableModel model = tbKhachHang.getModel();
-        txtMaKH.setText(model.getValueAt(i, 0).toString());
-        txtTenKH.setText(model.getValueAt(i, 1).toString());
-        txtDienThoai.setText(model.getValueAt(i, 2).toString());
-        txtDiaChiKH.setText(model.getValueAt(i, 3).toString());
-        txtEmail.setText(model.getValueAt(i, 4).toString());
-        txtSoTienNo.setText(model.getValueAt(i, 5).toString());
-    }//GEN-LAST:event_tbKhachHangMouseClicked
-
-    private void tbKhachHangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKhachHangKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbKhachHangKeyPressed
-
     private void btnBCTonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBCTonActionPerformed
         // TODO add your handling code here:
         hienThiBaoCaoTon();
@@ -800,6 +804,75 @@ public class JMain extends javax.swing.JFrame {
         SachData.Delete(txtMaSach.getText().trim());
         hienThiDanhSachSach();
     }//GEN-LAST:event_btnXóaActionPerformed
+
+    private void txtQDNhapMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQDNhapMinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQDNhapMinActionPerformed
+
+    private void btnQDLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQDLuuActionPerformed
+        // TODO add your handling code here:
+        int j;
+        if(cbApDung.isSelected())
+        {
+            j=1;
+        } else {
+            j=0;
+        }
+        try {
+            int i = 1;
+            ts.setMaThamSo(i);
+            String QDnhapMin = txtQDNhapMin.getText().trim();
+            int QDNhapMin2 = Integer.parseInt(QDnhapMin);
+            String QDTonTrc = txtQDTonTrcKhiNhap.getText().trim();
+            int QDTonTrc2 = Integer.parseInt(QDTonTrc);
+            String QDTienNoMax = txtQDTienNoMax.getText().trim();
+            int QDTienNoMax2 = Integer.parseInt(QDTienNoMax);
+            String QDTonMin = txtQDTonMinSauKhiBan.getText().trim();
+            int QDTonMin2 = Integer.parseInt(QDTonMin);
+
+            ts.setSoLuongNhapItNhat(QDNhapMin2);
+            ts.setSoLuongTonToiDaTruocKhiNhap(QDTonTrc2);
+            ts.setSoLuongTonToiThieuSauKhiBan(QDTienNoMax2);
+            ts.setSoTienNoToiDa(QDTonMin2);
+            ts.setApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo(j);
+            ThamSoData.Update(ts);
+            hienThiThamSo();
+             JOptionPane.showMessageDialog(this, "Lưu lại thành công!");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ban đã nhập sai định dạng vui lòng nhập lại");
+        }
+    }//GEN-LAST:event_btnQDLuuActionPerformed
+
+    private void btnQDMacDinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQDMacDinhActionPerformed
+        // TODO add your handling code here
+        txtQDNhapMin.setText("100");
+        txtQDTonTrcKhiNhap.setText("20");
+        txtQDTienNoMax.setText("500000");
+        txtQDTonMinSauKhiBan.setText("10");
+        txtCoOKo.setText("có");
+    }//GEN-LAST:event_btnQDMacDinhActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        hienThiDanhSachSach();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnNhapLaiKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapLaiKHActionPerformed
+        // TODO add your handling code here:
+        //        txtMaKH.setText("");
+        txtMaKH.setText(Update.CodeXXX());
+        txtTenKH.setText("");
+        txtDiaChiKH.setText("");
+        txtDienThoai.setText("");
+        txtEmail.setText("");
+        txtSoTienNo.setText("");
+    }//GEN-LAST:event_btnNhapLaiKHActionPerformed
+
+    private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
+        // TODO add your handling code here:
+        KhachHangData.Delete(txtMaKH.getText().trim());
+        hienThiDanhSachKhachHang();
+    }//GEN-LAST:event_btnXoaKHActionPerformed
 
     private void btnCapNhapKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapKHActionPerformed
         // TODO add your handling code here:
@@ -819,6 +892,7 @@ public class JMain extends javax.swing.JFrame {
                 kh.setSoTienNo(num);
                 KhachHangData.Update(kh);
                 hienThiDanhSachKhachHang();
+                JOptionPane.showMessageDialog(this, "cập nhật thành công !");
                 // is an integer!
             } catch (NumberFormatException e) {
                 // not an integer!
@@ -827,20 +901,9 @@ public class JMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCapNhapKHActionPerformed
 
-    private void btnNhapLaiKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapLaiKHActionPerformed
-        // TODO add your handling code here:
-//        txtMaKH.setText("");
-        txtMaKH.setText(Update.CodeXXX());
-        txtTenKH.setText("");
-        txtDiaChiKH.setText("");
-        txtDienThoai.setText("");
-        txtEmail.setText("");
-        txtSoTienNo.setText("");
-    }//GEN-LAST:event_btnNhapLaiKHActionPerformed
-
     private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
         // TODO add your handling code here:
-//        txtMaKH.getText().isEmpty() |
+        //        txtMaKH.getText().isEmpty() |
 
         if (txtTenKH.getText().isEmpty() | txtDiaChiKH.getText().isEmpty() | txtDienThoai.getText().isEmpty() | txtEmail.getText().isEmpty() | txtSoTienNo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin, vui lòng nhập lại!");
@@ -868,61 +931,68 @@ public class JMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnThemKHActionPerformed
 
-    private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
+    private void tbKhachHangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKhachHangKeyPressed
         // TODO add your handling code here:
-        KhachHangData.Delete(txtMaKH.getText().trim());
-        hienThiDanhSachKhachHang();
-    }//GEN-LAST:event_btnXoaKHActionPerformed
+    }//GEN-LAST:event_tbKhachHangKeyPressed
 
-    private void txtQDNhapMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQDNhapMinActionPerformed
+    private void tbKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhachHangMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtQDNhapMinActionPerformed
+        int i = tbKhachHang.getSelectedRow();
+        TableModel model = tbKhachHang.getModel();
+        txtMaKH.setText(model.getValueAt(i, 0).toString());
+        txtTenKH.setText(model.getValueAt(i, 1).toString());
+        txtDienThoai.setText(model.getValueAt(i, 2).toString());
+        txtDiaChiKH.setText(model.getValueAt(i, 3).toString());
+        txtEmail.setText(model.getValueAt(i, 4).toString());
+        txtSoTienNo.setText(model.getValueAt(i, 5).toString());
+    }//GEN-LAST:event_tbKhachHangMouseClicked
 
-    private void btnQDLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQDLuuActionPerformed
+    private void txtDiaChiKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiKHActionPerformed
         // TODO add your handling code here:
-        int j;
-        if(txtApDungQD.getText() == "có")
-        {
-            j=1;
-        } else {
-            j=0;
-        }
+    }//GEN-LAST:event_txtDiaChiKHActionPerformed
+
+    private void txtTenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenKHActionPerformed
+
+    private void btnSearchSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSachActionPerformed
+        // TODO add your handling code here:
         try {
-            int i = 1;
-            ts.setMaThamSo(i);
-            String QDnhapMin = txtQDNhapMin.getText().trim();
-            int QDNhapMin2 = Integer.parseInt(QDnhapMin);
-            String QDTonTrc = txtQDTonTrcKhiNhap.getText().trim();
-            int QDTonTrc2 = Integer.parseInt(QDTonTrc);
-            String QDTienNoMax = txtQDTienNoMax.getText().trim();
-            int QDTienNoMax2 = Integer.parseInt(QDTienNoMax);
-            String QDTonMin = txtQDTonMinSauKhiBan.getText().trim();
-            int QDTonMin2 = Integer.parseInt(QDTonMin);
-
-            ts.setSoLuongNhapItNhat(QDNhapMin2);
-            ts.setSoLuongTonToiDaTruocKhiNhap(QDTonTrc2);
-            ts.setSoLuongTonToiThieuSauKhiBan(QDTienNoMax2);
-            ts.setSoTienNoToiDa(QDTonMin2);
-            ts.setApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo(j);
-            ThamSoData.Update(ts);
-            hienThiThamSo();
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "ban đã nhập sai định dạng vui lòng nhập lại");
+            String search = "SELECT * FROM sach WHERE TenSach='" + txtSachTimKiem.getText() +"'"; 
+            ResultSet rs = Connect.getData(search);
+            if(rs.first()){
+                txtMaSach.setText(rs.getString("MaSach"));
+                txtTenSach.setText(rs.getString("TenSach"));
+                txtTheLoai.setText(rs.getString("TheLoai"));
+                txtTacGia.setText(rs.getString("TacGia"));
+                txtDonGia.setText(rs.getString("DonGia"));
+                txtSLNhap.setText(rs.getString("SoLuongTon"));
+            }else{
+                JOptionPane.showMessageDialog(this, "Sách bạn tìm không tồn tại trong hệ thống, vui lòng nhập lại!");
+            }
+        } catch (SQLException e) {
         }
-    }//GEN-LAST:event_btnQDLuuActionPerformed
+    }//GEN-LAST:event_btnSearchSachActionPerformed
 
-    private void txtApDungQDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApDungQDActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApDungQDActionPerformed
+         try {
+            String search = "SELECT * FROM khachhang WHERE DienThoai='" + txtKHTimKiem.getText() +"'"; 
+            ResultSet rs = Connect.getData(search);
+            if(rs.first()){
+                txtMaKH.setText(rs.getString("MaKhachHang"));
+                txtTenKH.setText(rs.getString("HoTenKhachHang"));
+                txtDienThoai.setText(rs.getString("DienThoai"));
+                txtEmail.setText(rs.getString("DiaChi"));
+                txtDiaChiKH.setText(rs.getString("EMail"));
+                txtSoTienNo.setText(rs.getString("SoTienNo"));
+            }else{
+                JOptionPane.showMessageDialog(this, "Khách hàng bạn tìm không tồn tại trong hệ thống, vui lòng nhập lại!");
+            }
+        } catch (SQLException e) {
+        }
 
-    private void btnQDMacDinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQDMacDinhActionPerformed
-        // TODO add your handling code here
-        txtQDNhapMin.setText("100");
-        txtQDTonTrcKhiNhap.setText("20");
-        txtQDTienNoMax.setText("500000");
-        txtQDTonMinSauKhiBan.setText("10");
-        txtApDungQD.setText("có");
-    }//GEN-LAST:event_btnQDMacDinhActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -969,12 +1039,14 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JButton btnNhapLaiKH;
     private javax.swing.JButton btnQDLuu;
     private javax.swing.JButton btnQDMacDinh;
+    private javax.swing.JButton btnSearchSach;
     private javax.swing.JButton btnThemKH;
     private javax.swing.JButton btnThemSach;
-    private javax.swing.JButton btnTimKH;
-    private javax.swing.JButton btnTimSach;
     private javax.swing.JButton btnXoaKH;
     private javax.swing.JButton btnXóa;
+    private javax.swing.JCheckBox cbApDung;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1002,11 +1074,12 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabSach;
     private javax.swing.JTable tbBaoCao;
     private javax.swing.JTable tbKhachHang;
-    private javax.swing.JTextField txtApDungQD;
+    private javax.swing.JTextField txtCoOKo;
     private javax.swing.JTextField txtDiaChiKH;
     private javax.swing.JTextField txtDienThoai;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtKHTimKiem;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtMaSach;
     private javax.swing.JTextField txtQDNhapMin;
@@ -1014,12 +1087,17 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JTextField txtQDTonMinSauKhiBan;
     private javax.swing.JTextField txtQDTonTrcKhiNhap;
     private javax.swing.JTextField txtSLNhap;
+    private javax.swing.JTextField txtSachTimKiem;
     private javax.swing.JTextField txtSoTienNo;
     private javax.swing.JTextField txtTacGia;
     private javax.swing.JTextField txtTenKH;
     private javax.swing.JTextField txtTenSach;
     private javax.swing.JTextField txtTheLoai;
-    private javax.swing.JTextField txtTimKH;
-    private javax.swing.JTextField txtTimKiemSach;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+// khong thi trac nghiem phan ket noi co so du lieu
+//

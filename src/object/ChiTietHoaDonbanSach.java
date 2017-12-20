@@ -12,12 +12,13 @@ package object;
 public class ChiTietHoaDonbanSach {
 
     String MaHoaDonBanSach, MaSach;
-    int MaChiTietHoaDonBanSach, SoLuongBan, DonGiaBan, ThanhTien;
+    String MaChiTietHoaDonBanSach, SoLuongBan;
+    int DonGiaBan, ThanhTien;
 
     public ChiTietHoaDonbanSach() {
     }
 
-    public ChiTietHoaDonbanSach(String MaHoaDonBanSach, String MaSach, int MaChiTietHoaDonBanSach, int SoLuongBan, int DonGiaBan, int ThanhTien) {
+    public ChiTietHoaDonbanSach(String MaHoaDonBanSach, String MaSach, String MaChiTietHoaDonBanSach, String SoLuongBan, int DonGiaBan, int ThanhTien) {
         this.MaHoaDonBanSach = MaHoaDonBanSach;
         this.MaSach = MaSach;
         this.MaChiTietHoaDonBanSach = MaChiTietHoaDonBanSach;
@@ -42,19 +43,19 @@ public class ChiTietHoaDonbanSach {
         this.MaSach = MaSach;
     }
 
-    public int getMaChiTietHoaDonBanSach() {
+    public String getMaChiTietHoaDonBanSach() {
         return MaChiTietHoaDonBanSach;
     }
 
-    public void setMaChiTietHoaDonBanSach(int MaChiTietHoaDonBanSach) {
+    public void setMaChiTietHoaDonBanSach(String MaChiTietHoaDonBanSach) {
         this.MaChiTietHoaDonBanSach = MaChiTietHoaDonBanSach;
     }
 
-    public int getSoLuongBan() {
+    public String getSoLuongBan() {
         return SoLuongBan;
     }
 
-    public void setSoLuongBan(int SoLuongBan) {
+    public void setSoLuongBan(String SoLuongBan) {
         this.SoLuongBan = SoLuongBan;
     }
 

@@ -77,12 +77,17 @@ public class Update {
     public static String CodeXXX() {
         int x, y, z, k, r;
         char a, b, c, d;
+        String Sx,Sy,Sz,Sk;
         String temp = null;
         Random ran = new Random();
-        x = ran.nextInt(5);
-        y = ran.nextInt(5);
-        z = ran.nextInt(5);
-        k = ran.nextInt(5);
+        x = ran.nextInt(10);
+        y = ran.nextInt(10);
+        z = ran.nextInt(10);
+        k = ran.nextInt(10);
+        Sx = String.valueOf(x);
+        Sy = String.valueOf(y);
+        Sz = String.valueOf(z);
+        Sk = String.valueOf(k);
         a = (char) (ran.nextInt(26) + 'a');
         b = (char) (ran.nextInt(26) + 'a');
         c = (char) (ran.nextInt(26) + 'a');
@@ -90,16 +95,16 @@ public class Update {
         r = 1 + ran.nextInt(4);
         switch (r) {
             case 1:
-                temp = x + "" + k + "a" + "b" + z + "" + y;
+                temp = a + Sx + b + Sy + c + Sz + d + Sk;
                 break;
             case 2:
-                temp = x + "a" + k + "b" + z + "c";
+                temp = b + Sx + c + Sy + d + Sz + a + Sk;
                 break;
             case 3:
-                temp = "a" + k + "b" + z + "c" + x;
+                temp = c + Sx + d + Sy + a + Sz + b + Sk;
                 break;
             case 4:
-                temp = "c" + "d" + x + "" + k + "a" + "b";
+                temp = d + Sx + a + Sy + b + Sz + c + Sk;
                 break;
 
         }

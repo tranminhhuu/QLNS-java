@@ -37,8 +37,8 @@ public class ThamSoData {
             ps.setInt(6, t.getMaThamSo());
             ps.setInt(1, t.getSoLuongNhapItNhat());
             ps.setInt(2, t.getSoLuongTonToiDaTruocKhiNhap());
-            ps.setInt(3, t.getSoTienNoToiDa());
-            ps.setInt(4, t.getSoLuongTonToiThieuSauKhiBan());
+            ps.setInt(4, t.getSoTienNoToiDa());
+            ps.setInt(3, t.getSoLuongTonToiThieuSauKhiBan());
             ps.setInt(5, t.getApDungQuyDinhSoTienThuKhongVuotQuaSoTienNo());
             return ps.executeUpdate() > 0;
         } catch (Exception e) {

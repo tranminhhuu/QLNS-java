@@ -44,9 +44,9 @@ public class JLogin extends javax.swing.JFrame {
 
         jLabel1.setText("Phần mềm quản lí nhà sách");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Ba Con Sâu");
+        jLabel2.setText("Đại lí nhập và phân phối sách Thành Trung");
 
         jlabel1.setText("Admin ID");
 
@@ -122,15 +122,17 @@ public class JLogin extends javax.swing.JFrame {
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
         // TODO add your handling code here:
-//       if( txtAdminID.getText() == "root" | txtPass.getText() == "")
-//       {
+        String ID = new String("root");
+        String Pass = new String("1111");
+       if( txtAdminID.getText().equals(ID) && txtPass.getText().equals(Pass))
+       {
            JMenu main= new JMenu();
            main.show();
            close();
-//       }else
-//       {
-//           JOptionPane.showMessageDialog(this, "sai thông tin đăng nhập, vui lòng nhập lại");
-//       }
+       }else
+       {
+           JOptionPane.showMessageDialog(this, "sai thông tin đăng nhập, vui lòng nhập lại");
+       }
     }//GEN-LAST:event_btnLogInActionPerformed
 
     private void txtAdminIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminIDActionPerformed

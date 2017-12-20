@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.applet.Main;
-import static sun.applet.Main.main;
 import object.SinhVien;
 
 /**
